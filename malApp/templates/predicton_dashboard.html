@@ -1,0 +1,148 @@
+{% include 'base.html' %}
+{% load static custom_tags %}
+{% block body %}
+<style>
+  li{
+  line-height: 2.2;
+  }
+</style>
+<section class="section-services section-t8">
+    <div class="container mt-5" style="width:80%">
+      <h3>Malnutrition Prediction Dashboard</h3><hr>
+      <div class="row">
+        <div class="col-md-6" align="center">
+          <button type="button" class="btn-lg btn {% if 'unhealthy' in data.class_name %}btn-danger{% else %}btn-primary{% endif %}">
+            {% if 'unhealthy' in data.class_name %}MALNOURISHED{% else %}NORMAL{% endif %}
+          </button>
+          {% if 'unhealthy' in data.class_name %}
+            <img src="{% static 'assets/img/gauge-img-2.png' %}" style="width:80%;height:300px"/>
+          {% else %}
+            <img src="{% static 'assets/img/gauge-img.png' %}" style="width:80%;height:300px"/>
+          {% endif %}
+        </div>
+        <div class="col-md-6 ml-3">
+          <h4 align="center" class="text-uppercase font-weight-bold">Patient Details</h4>
+          <h5>Patient name : <span style="color:green;font-weight:bold">{{data.user.first_name}} {{data.user.last_name}}</span></h5>
+          <h5>AGE : <span style="color:green;font-weight:bold">{{data.age}}</span></h5>
+          <h5>WEIGHT : <span style="color:green;font-weight:bold">{{data.weight}}</span> </h5>
+          <h5>HEIGHT : <span style="color:green;font-weight:bold">{{data.height}} </span></h5>
+          <h5>GENDER : <span style="color:green;font-weight:bold">{{data.gender}}</span></h5>
+          <h1 align="center">MalScore - {{data.class_name|find_mal_score}}</h1>
+          <h1 align="center">{% if 50 > data.class_name|find_mal_score %}LOW RISK{% else %}HIGH RISK{% endif %}</h1>
+          <h4 align="center">NUTRITION INTAKE SUGGESTION</h4>
+        </div>
+        <div class="col-md-12" align="center">
+          <button type="button" class="btn-lg btn btn-primary">
+            KEY PARAMETERS
+          </button>
+<br>
+        <br>
+        </div>
+        <div class="col-md-5">
+          <img src="{{data.img.url}}" class="img-thumbnail" style="width:100%"/>
+        </div>
+
+        {% if 50 > data.class_name|find_mal_score %}
+          <div class="col-md-7">
+            <div class="container" style="width:70%">
+              <li>
+                <span style="font-size:15pt;font-weight:bold">SKIN PIGMENTATION LEVEL : <span style="color:green;font-weight:bold">LOW</span></span>
+              <br>
+              </li>
+              <li>
+                <span style="font-size:15pt;font-weight:bold">NAILS DISCOLORATION : <span style="color:green;font-weight:bold">MILD</span></span>
+              <br>
+              </li>
+              <li>
+                <span style="font-size:15pt;font-weight:bold">BODY MASS INDEX : <span style="color:green;font-weight:bold">{{data.id|find_body_mass_index}} - Healthy Weight</span></span>
+              </li>
+              <li>
+                  <span style="font-size:15pt;font-weight:bold">DIET SUGGESTIONS : <span style="color:green;font-weight:bold">
+                    Include fruits, and high fibers items like nuts, green vegetables in patients diet
+                  </span>
+                  </span>
+              </li>
+              <li>
+                  <span style="font-size:15pt;font-weight:bold">CALCIUM LEVELS : <span style="color:green;font-weight:bold">NORMAL</span></span>
+              </li>
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-7">
+            <div class="container" style="width:70%">
+              <ul>
+                <li>
+                  <span style="font-size:15pt;font-weight:bold">SKIN PIGMENTATION LEVEL : <span style="color:green;font-weight:bold">Mild, red spotting observed</span></span>
+                  <br>
+                </li>
+                <li>
+                  <span style="font-size:15pt;font-weight:bold">NAILS DISCOLORATION : <span style="color:green;font-weight:bold">MILD</span></span>
+                <br>
+                </li>
+                <li>
+                  <span style="font-size:15pt;font-weight:bold">BODY MASS INDEX : <span style="color:green;font-weight:bold">{{data.id|find_body_mass_index}} - Under Weight</span></span>
+                </li>
+                <li>
+                  <span style="font-size:15pt;font-weight:bold">DIET SUGGESTIONS : <span style="color:green;font-weight:bold">
+                  Include energy rich-bread, milk, soyabean, paneer, and high fiber items like nuts, green vegetables in patients diet
+                  </span>
+                  </span>
+                </li>
+                <li>
+                  <span style="font-size:15pt;font-weight:bold">CALCIUM LEVELS : <span style="color:green;font-weight:bold">NORMAL</span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+{% if 'unhealthy' in data.class_name %}
+      <div class="row">
+          <div class="col-md-12">
+            <div class="container">
+        <h3>Related Doctor</h3><hr>
+
+            <div class="table-responsive">
+                <table id="example1" class="display nowrap" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>City</th>
+                        <th>Specialization</th>
+                        <th>Experience</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in doctor %}
+                      <tr>
+                        <td>{{i.id}}</td>
+                        <td><img src="{{i.image.url}}" class="img-thumbnail" style="width:100px;height:100px"/></td>
+                        <td>{{i.user.username}}</td>
+                        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.address}}</td>
+                        <td>{{i.specialization}}</td>
+                        <td>{{i.experience}}</td>
+
+
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+
+            </div>
+          </div>
+      </div>
+      {% endif %}
+    </div>
+</section>
+
+{% include 'footer.html' %}
+{% include 'tablecdn.html' %}
+{% endblock  %}

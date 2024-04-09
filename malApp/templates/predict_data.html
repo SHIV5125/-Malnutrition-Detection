@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+  label{
+    font-weight:bold;
+  }
+</style>
+<section class="section-services section-t8">
+    <div class="container mt-5" style="width:50%">
+    <h3>Malnutrition Prediction Form</h3><hr>
+    <div class="form">
+      <form class="form-a" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container" style="width:100%">
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <div class="form-group">
+                <label class="pb-2" for="gender">GENDER</label><br/>
+                <input type="radio" id="gender" name="gender" value="Boy"> Boy<br/>
+                <input type="radio" id="gender-1" name="gender" value="Girl"> Girl
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-2">
+              <div class="form-group">
+                <label class="pb-2" for="age">AGE <small>(Years)</small></label>
+                <input type="text" class="form-control form-control-a" placeholder="AGE (year)" id="age" name="age" required>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-2">
+              <div class="form-group">
+                <label class="pb-2" for="weight">WEIGHT<small>(Kg)</small></label>
+                <input type="text" class="form-control form-control-a" placeholder="WEIGHT (Kg)" id="weight" name="weight" required>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-2">
+              <div class="form-group">
+                <label class="pb-2" for="height">HEIGHT<small>(cm)</small></label>
+                <input type="text" class="form-control form-control-a" placeholder="HEIGHT (cm)" id="height" name="height" required>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-2">
+              <div class="form-group">
+                <label class="pb-2" for="img">Upload Image</label>
+                <input type="file" class="form-control form-control-a" id="img" name="img" required>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-b">Predict</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="container">
+          {% if output %}
+            <h4 align="center" style="color:green">Our Recommended Crop is {{output}}</h4><hr>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'footer.html' %}
+{% endblock  %}

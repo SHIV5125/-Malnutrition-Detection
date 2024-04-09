@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="section-services section-t8">
+    <div class="container" style="width:60%">
+    <h3>Doctor Sign In</h3><hr>
+    <div class="form">
+      <form class="form-a" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row" >
+          
+          <div class="col-md-12 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="Type">Email</label>
+              <input type="email" class="form-control form-control-a" placeholder="Email" name="username">
+            </div>
+          </div>
+          <div class="col-md-12 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="Type">Password</label>
+              <input type="password" class="form-control form-control-a" placeholder="Password" name="password">
+            </div>
+          </div>
+          
+          <div class="col-md-2 pr-0">
+            <button type="submit" class="btn btn-success">Sign In</button>
+          </div>
+          <div class="col-md-10 pl-0" align="right">
+            <a href="/doc-register/" class="font-weight-bold text-red">
+              <button type="button" class="btn btn-secondary">
+                   Click here for create new account
+              </button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% include 'footer.html' %}
+{% endblock  %} 

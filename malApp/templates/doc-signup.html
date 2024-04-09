@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="section-services section-t8">
+    <div class="container" style="width:60%">
+    <h3>Doctor Registration</h3><hr>
+    <div class="form">
+      <form class="form-a" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="first_name">First name</label>
+              <input type="text" class="form-control form-control-a" placeholder="First Name" name="first_name" id="first_name">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="last_name">Last name</label>
+              <input type="text" class="form-control form-control-a" id="last_name" placeholder="Last Name" name="last_name">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="email">Email</label>
+              <input type="email" class="form-control form-control-a" id="email" placeholder="Email" name="username">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label class="pb-2" for="password">Password</label>
+              <input type="password" class="form-control form-control-a" id="password" placeholder="Password" name="password">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+                <label class="pb-2" for="image">Image</label>
+                <input type="file" class="form-control form-control-a" name="image" id="image">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+                <label class="pb-2" for="mobile">Mobile</label>
+                <input type="text" class="form-control form-control-a" name="mobile" id="mobile"  placeholder="Mobile">
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="address">City</label>
+              <input type="text" class="form-control form-control-a" name="address" id="address" placeholder="City">
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+                <label class="pb-2" for="specialization">Specialization</label>
+                <input type="text" class="form-control form-control-a" name="specialization" id="specialization"  placeholder="specialization">
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <div class="form-group mt-3">
+              <label class="pb-2" for="experience">Experience(Year)</label>
+              <input type="text" class="form-control form-control-a" name="experience" id="experience" placeholder="experience">
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% include 'footer.html' %}
+{% endblock  %} 

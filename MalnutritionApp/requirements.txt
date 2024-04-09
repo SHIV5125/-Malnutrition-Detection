@@ -1,0 +1,6 @@
+numpy
+pandas
+efficientnet == 1.1.1
+tensorflow
+opencv-contrib-python
+opencv-python 
